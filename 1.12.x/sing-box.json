@@ -2,15 +2,15 @@
   "dns": {
     "servers": [
       {
-        "tag": "google",
+        "tag": "cloudflare",
         "type": "https",
-        "server": "8.8.8.8",
-        "detour": "proxy"
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "Proxy"
       },
       {
-        "tag": "ali",
+        "tag": "cqdns",
         "type": "https",
-        "server": "223.5.5.5",
+        "server": "61.128.192.68",
         "detour": "direct"
       },
       {
@@ -24,7 +24,7 @@
       {
         "clash_mode": "Direct",
         "action": "route",
-        "server": "ali"
+        "server": "cqdns"
       },
       {
         "clash_mode": "Global",
@@ -50,12 +50,12 @@
         "server": "ali"
       }
     ],
-    "final": "google",
+    "final": "cloudflare",
     "independent_cache": true
   },
   "route": {
     "default_domain_resolver": {
-      "server": "ali"
+      "server": "cqdns"
     },
     "rules": [
       {
