@@ -10,8 +10,7 @@
       {
         "tag": "cqdns",
         "type": "udp",
-        "server": "61.128.192.68",
-        "detour": "direct"
+        "server": "61.128.192.68"
       },
       {
         "tag": "fakeip",
@@ -32,6 +31,10 @@
         "server": "fakeip"
       },
       {
+        "rule_set": "AWAvenue-Ads-Rule",
+        "action": "reject"
+      },
+      {
         "rule_set": "cn_domain",
         "action": "route",
         "server": "cqdns"
@@ -50,7 +53,7 @@
   },
   "route": {
     "default_domain_resolver": {
-      "server": "cqdns",
+      "server": "cloudflare",
       "rewrite_ttl": 60
     },
     "rules": [
@@ -82,10 +85,6 @@
         "clash_mode": "Direct",
         "action": "route",
         "outbound": "direct"
-      },
-      {
-        "rule_set": "AWAvenue-Ads-Rule",
-        "action": "reject"
       },
       {
         "rule_set": [
@@ -234,11 +233,11 @@
       "tag": "proxy",
       "type": "selector",
       "outbounds": [
-        "all",
-        "all-auto",
+        "🚀 节点选择",
+        "♻️ 自动选择",
         "direct"
       ],
-      "default": "all"
+      "default": "🚀 节点选择"
     },
     {
       "tag": "final",
@@ -250,14 +249,14 @@
       "default": "proxy"
     },
     {
-      "tag": "all",
+      "tag": "🚀 节点选择",
       "type": "selector",
       "outbounds": [
-        "all-auto"
+        "♻️ 自动选择"
       ]
     },
     {
-      "tag": "all-auto",
+      "tag": "♻️ 自动选择",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -303,7 +302,7 @@
   },
   "log": {
     "disabled": false,
-    "level": "info",
+    "level": "error",
     "timestamp": true
   }
 }
