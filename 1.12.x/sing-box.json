@@ -83,6 +83,10 @@
         "outbound": "direct"
       },
       {
+        "rule_set": "AWAvenue-Ads-Rule",
+        "action": "reject"
+      },
+      {
         "rule_set": [
           "telegram_ip",
           "telegram_domain",
@@ -131,6 +135,12 @@
         "format": "binary",
         "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/apple.srs",
         "download_detour": "direct"
+      },
+      {
+        "tag": "AWAvenue-Ads-Rule",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.github.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-regex.srs"
       },
       {
         "tag": "bahamut_domain",
@@ -269,24 +279,11 @@
     {
       "type": "tun",
       "address": [
-        "172.19.0.0/30",
-        "fdfe:dcba:9876::0/126"
+        "172.18.0.1/30",
+        "fdfe:dcba:9876::1/126"
       ],
-      "stack": "mixed",
       "auto_route": true,
-      "strict_route": true,
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 7890
-        }
-      }
-    },
-    {
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 7890
+      "strict_route": true
     }
   ],
   "experimental": {
