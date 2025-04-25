@@ -52,7 +52,7 @@
   },
   "route": {
     "default_domain_resolver": {
-      "server": "cloudflare",
+      "server": "cqdns",
       "rewrite_ttl": 60
     },
     "rules": [
@@ -93,7 +93,6 @@
           "google_domain",
           "netflix_ip",
           "netflix_domain",
-          "bahamut_domain",
           "openai_domain",
           "proxy_domain",
           "youtube_domain"
@@ -140,13 +139,6 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.github.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-regex.srs"
-      },
-      {
-        "tag": "bahamut_domain",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/bahamut.srs",
-        "download_detour": "direct"
       },
       {
         "tag": "cn_ip",
@@ -239,15 +231,6 @@
       "default": "🚀 节点选择"
     },
     {
-      "tag": "final",
-      "type": "selector",
-      "outbounds": [
-        "proxy",
-        "direct"
-      ],
-      "default": "proxy"
-    },
-    {
       "tag": "🚀 节点选择",
       "type": "selector",
       "outbounds": [
@@ -274,6 +257,15 @@
     {
       "tag": "direct",
       "type": "direct"
+    },
+    {
+      "tag": "final",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct"
+      ],
+      "default": "proxy"
     }
   ],
   "inbounds": [
@@ -300,7 +292,7 @@
   },
   "log": {
     "disabled": false,
-    "level": "error",
+    "level": "info",
     "timestamp": true
   }
 }
