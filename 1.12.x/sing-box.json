@@ -15,8 +15,7 @@
       {
         "tag": "fakeip",
         "type": "fakeip",
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
+        "inet4_range": "198.18.0.0/15"
       }
     ],
     "rules": [
@@ -49,6 +48,7 @@
         "rewrite_ttl": 1
       }
     ],
+    "strategy": "prefer_ipv4",
     "independent_cache": true
   },
   "route": {
@@ -64,8 +64,7 @@
           "tls",
           "quic",
           "dns"
-        ],
-        "timeout": "500ms"
+        ]
       },
       {
         "protocol": "dns",
@@ -112,7 +111,6 @@
       },
       {
         "rule_set": [
-          "cn_ip",
           "cn_domain"
         ],
         "action": "route",
@@ -280,12 +278,30 @@
   "inbounds": [
     {
       "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "sing-box",
       "address": [
         "172.18.0.1/30",
         "fdfe:dcba:9876::1/126"
       ],
       "auto_route": true,
-      "strict_route": true
+      "strict_route": true,
+      "route_address": [
+        "0.0.0.0/1",
+        "128.0.0.0/1",
+        "::/1",
+        "8000::/1"
+      ],
+      "auto_redirect": true,
+      "route_exclude_address": [
+        "10.0.0.0/8",
+        "fc00::/7"
+      ],
+      "route_exclude_address_set": [
+        "cn-ip"
+      ],
+      "endpoint_independent_nat": false,
+      "udp_timeout": "5m"
     }
   ],
   "experimental": {
