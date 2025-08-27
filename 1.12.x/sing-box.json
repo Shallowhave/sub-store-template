@@ -48,14 +48,12 @@
         "rewrite_ttl": 1
       }
     ],
+    "final": "cloudflare",
     "strategy": "prefer_ipv4",
-    "independent_cache": true
+    "independent_cache": true,
+    "reverse_mapping": true
   },
   "route": {
-    "default_domain_resolver": {
-      "server": "cloudflare",
-      "rewrite_ttl": 60
-    },
     "rules": [
       {
         "action": "sniff",
@@ -87,6 +85,21 @@
       },
       {
         "rule_set": [
+          "cn_domain"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "apple_ip",
+          "apple_domain"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
           "telegram_ip",
           "telegram_domain",
           "google_ip",
@@ -100,25 +113,13 @@
         ],
         "action": "route",
         "outbound": "proxy"
-      },
-      {
-        "rule_set": [
-          "apple_ip",
-          "apple_domain"
-        ],
-        "action": "route",
-        "outbound": "direct"
-      },
-      {
-        "rule_set": [
-          "cn_domain"
-        ],
-        "action": "route",
-        "outbound": "direct"
       }
     ],
     "final": "final",
     "auto_detect_interface": true,
+    "default_domain_resolver": {
+      "server": "cqdns"
+    },
     "rule_set": [
       {
         "tag": "apple_ip",
